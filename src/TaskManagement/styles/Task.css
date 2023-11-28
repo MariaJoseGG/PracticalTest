@@ -46,6 +46,7 @@ li {
 
 span {
     color: white;
+    font-weight: bold;
 }
 
 .task-completed {

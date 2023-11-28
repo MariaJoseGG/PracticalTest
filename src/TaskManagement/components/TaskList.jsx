@@ -13,6 +13,7 @@ const getStoredTasks = () => {
     task: 'Tarea inicial',
     completed: false,
     description: 'Tarea de prueba',
+    date: new Date()
   }]
 }
 
@@ -22,12 +23,13 @@ export const TaskList = () => {
   const [taskState, dispatch] = useReducer(taskReducer, getStoredTasks())
 
   // Add new task
-  const handleAddTask = (task, description) => {
+  const handleAddTask = (task, description, date) => {
     const newTask = {
       id: new Date().getTime(), // To guarantee unique id's
       task: task,
       completed: false,
       description,
+      date
     }
 
     dispatch(addTask(newTask))
@@ -87,6 +89,7 @@ export const TaskList = () => {
               task={item.task}
               handleDeleteTask={handleDeleteTask}
               description={item.description}
+              date={item.date}
             />
           )
         })}

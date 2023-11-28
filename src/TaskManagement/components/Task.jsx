@@ -1,7 +1,7 @@
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import '../styles/Task.css'
 
-export const Task = ({ id, completed, handleCompleteTask, task, handleDeleteTask, description }) => {
+export const Task = ({ id, completed, handleCompleteTask, task, handleDeleteTask, description, date }) => {
   return (
     <li className="d-flex align-content-center mb-1">
 
@@ -23,10 +23,19 @@ export const Task = ({ id, completed, handleCompleteTask, task, handleDeleteTask
           {task}
         </span>
 
+        {/* Task description */}
         <p
           className={completed ? 'task-completed' : ''}
         >
           {description}
+        </p>
+
+        {/* Task expiration date */}
+        <p
+          className={completed ? 'task-completed' : ''}
+        >
+          {date ? 'Fecha de vencimiento: ' : ''}
+          {date}
         </p>
       </div>
 

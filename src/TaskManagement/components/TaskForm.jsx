@@ -4,7 +4,7 @@ import '../styles/TaskForm.css'
 export const TaskForm = ({ addTask }) => {
 
   // A custom hook is used to store the values entered in the form of a new task.
-  const { formState, onInputChange } = useForm({ task: '', description: '' })
+  const { formState, onInputChange } = useForm({ task: '', description: '', date: '' })
 
   // Add new task
   const handleSubmit = (event) => {
@@ -13,7 +13,7 @@ export const TaskForm = ({ addTask }) => {
     // If no task has been written
     if (formState.task === '') return
 
-    addTask(formState.task.trim(), formState.description)
+    addTask(formState.task.trim(), formState.description, formState.date)
   }
 
   return (
@@ -44,6 +44,15 @@ export const TaskForm = ({ addTask }) => {
             ></textarea>
 
             <label htmlFor="floatingTextarea">Descripción</label>
+          </div>
+
+          <div className="p-1">
+            <input
+              type="date"
+              className="form-control"
+              name='date'
+              value={formState.date}
+              onChange={onInputChange} />
           </div>
         </div>
 
