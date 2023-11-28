@@ -1,19 +1,22 @@
 import { useForm } from '../../hooks/useForm'
 import '../styles/TaskForm.css'
 
-export const TaskForm = () => {
+export const TaskForm = ({addTask}) => {
 
   const { formState, onInputChange } = useForm({ task: '' })
 
   // Add new task
-  const addTask = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault() // Prevents page reloading
 
-    
+    // If no task has been written
+    if (formState.task === '') return
+
+    addTask(formState.task)
   }
 
   return (
-    <form onSubmit={addTask}>
+    <form onSubmit={handleSubmit}>
       <div className="container">
         <div className="row">
           <div className="col">
