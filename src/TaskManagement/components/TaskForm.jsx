@@ -1,7 +1,7 @@
 import { useForm } from '../../hooks/useForm'
 import '../styles/TaskForm.css'
 
-export const TaskForm = ({addTask}) => {
+export const TaskForm = ({ addTask }) => {
 
   const { formState, onInputChange } = useForm({ task: '' })
 
@@ -17,22 +17,18 @@ export const TaskForm = ({addTask}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                name='task'
-                value={formState.task}
-                onChange={onInputChange}
-                placeholder="Ingresa una tarea" />
-            </div>
-          </div>
-          <div className="col">
-            <button type="submit" className="btn btn-primary">Agregar Tarea</button>
-          </div>
+      <div className="container d-flex">
+        <div className="p-2 flex-grow-1">
+          <input
+            type="text"
+            className="form-control"
+            name='task'
+            value={formState.task}
+            onChange={onInputChange}
+            placeholder="Ingresa una tarea" />
+        </div>
+        <div className='p-2'>
+          <button type="submit" className="btn add-button">Agregar Tarea</button>
         </div>
       </div>
     </form>

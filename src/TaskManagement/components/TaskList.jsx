@@ -3,6 +3,7 @@ import '../styles/TaskList.css'
 import { TaskForm } from './TaskForm'
 import { addTask, completeTask, deleteTask } from '../functions/taskActions'
 import { taskReducer } from '../functions/taskReducer'
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 export const TaskList = () => {
 
@@ -30,7 +31,7 @@ export const TaskList = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='container w-75'>
       <h1 className='text-center'>Lista de Tareas</h1>
 
       <TaskForm
@@ -42,21 +43,29 @@ export const TaskList = () => {
       <ul className="list-group">
         {taskState.map(item => {
           return (
-            <li className="list-group-item d-flex justify-content-between" key={item.id}>
-              <span>{item.task}</span>
+            <li className="d-flex align-content-center mb-1" key={item.id}>
 
-              <div>
+              <div className='round p-2'>
                 <input
                   type="checkbox"
-                  value={item.finalizada}
+                  id={`checkbox-${item.id}`}
+                  checked={item.completed}
                   onChange={() => handleCompleteTask(item)}
                 />
+                <label htmlFor={`checkbox-${item.id}`}></label>
+              </div>
 
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDeleteTask(item)}>
-                  Borrar
-                </button>
+              <span
+                // className="ml-2 p-2 flex-grow-1"
+                className={item.completed ? 'ml-2 p-2 flex-grow-1 task-completed' : 'ml-2 p-2 flex-grow-1'}>
+                {item.task}
+              </span>
+
+              <div
+                className='p-2'
+                onClick={() => handleDeleteTask(item)}
+              >
+                <AiOutlineCloseCircle className='delete-icon' />
               </div>
             </li>
           )

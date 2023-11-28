@@ -1,14 +1,14 @@
-# PracticalTest
+# TaskAppReact
 
-Aplicación para manejar una lista de tareas desarrollada con React y Vite
+Aplicación para manejar una lista de tareas, desarrollada con React y Vite.
 
 Las acciones posibles son:
 
-- Agregar nueva tarea
+- Agregar nuevas tareas
 
-- Marcar una tarea como completada
+- Marcar tareas como completadas
 
-- Eliminar una tarea
+- Eliminar tareas
 
 ## Para iniciar el proyecto:
 
