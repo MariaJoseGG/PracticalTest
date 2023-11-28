@@ -3,16 +3,17 @@ import '../styles/TaskList.css'
 import { TaskForm } from './TaskForm'
 import { addTask, completeTask, deleteTask } from '../functions/taskActions'
 import { taskReducer } from '../functions/taskReducer'
-import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { Task } from './Task'
 
 // The tasks stored in the LocalStorage are loaded when the page is reloaded
 const getStoredTasks = () => {
+  // If there are no tasks in the LocalStorage, a default task is loaded
   return JSON.parse(localStorage.getItem('tasks')) || [{
     id: 1,
     task: 'Tarea inicial',
-    completed: false
+    completed: false,
+    description: 'Tarea de prueba',
   }]
-  // If there are no tasks in the LocalStorage, a default task is loaded
 }
 
 export const TaskList = () => {
@@ -21,11 +22,12 @@ export const TaskList = () => {
   const [taskState, dispatch] = useReducer(taskReducer, getStoredTasks())
 
   // Add new task
-  const handleAddTask = (task) => {
+  const handleAddTask = (task, description) => {
     const newTask = {
       id: new Date().getTime(), // To guarantee unique id's
       task: task,
-      completed: false
+      completed: false,
+      description,
     }
 
     dispatch(addTask(newTask))
@@ -36,7 +38,7 @@ export const TaskList = () => {
   }
 
   // Marking or unmarking a task as completed
-  const handleCompleteTask = ({ id }) => {
+  const handleCompleteTask = (id) => {
     dispatch(completeTask(id))
 
     // Updating the localStorage
@@ -52,7 +54,7 @@ export const TaskList = () => {
   }
 
   // Delete task
-  const handleDeleteTask = ({ id }) => {
+  const handleDeleteTask = (id) => {
     dispatch(deleteTask(id))
 
     // Updating the localStorage
@@ -77,33 +79,15 @@ export const TaskList = () => {
       <ul className="list-group">
         {taskState.map(item => {
           return (
-            <li className="d-flex align-content-center mb-1" key={item.id}>
-
-              {/* Checkbox */}
-              <div className='round p-2'>
-                <input
-                  type="checkbox"
-                  id={`checkbox-${item.id}`}
-                  checked={item.completed}
-                  onChange={() => handleCompleteTask(item)}
-                />
-                <label htmlFor={`checkbox-${item.id}`}></label>
-              </div>
-
-              {/* Título de la tarea */}
-              <span
-                className={item.completed ? 'ml-2 p-2 flex-grow-1 task-completed' : 'ml-2 p-2 flex-grow-1'}>
-                {item.task}
-              </span>
-
-              {/* Ícono para borrar la tarea */}
-              <div
-                className='p-2'
-                onClick={() => handleDeleteTask(item)}
-              >
-                <AiOutlineCloseCircle className='delete-icon' />
-              </div>
-            </li>
+            <Task
+              key={item.id}
+              id={item.id}
+              completed={item.completed}
+              handleCompleteTask={handleCompleteTask}
+              task={item.task}
+              handleDeleteTask={handleDeleteTask}
+              description={item.description}
+            />
           )
         })}
       </ul>

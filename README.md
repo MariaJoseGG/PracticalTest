@@ -8,6 +8,6 @@ Ejecutar el comando *npm run dev*
 
 ## Características de la aplicación
 
-- Se pueden agregar nuevas tareas, marcarlas o desmarcarlas como completadas y eliminar tareas.
+- Se pueden agregar nuevas tareas, marcarlas o desmarcarlas como completadas y eliminarlas.
 
-- El estado de la lista de tareas se mantiene aún después de recargar la página.
+- El estado de la lista de tareas se mantiene después de recargar la página.

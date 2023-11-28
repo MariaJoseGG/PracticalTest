@@ -4,7 +4,7 @@ import '../styles/TaskForm.css'
 export const TaskForm = ({ addTask }) => {
 
   // A custom hook is used to store the values entered in the form of a new task.
-  const { formState, onInputChange } = useForm({ task: '' })
+  const { formState, onInputChange } = useForm({ task: '', description: '' })
 
   // Add new task
   const handleSubmit = (event) => {
@@ -13,23 +13,44 @@ export const TaskForm = ({ addTask }) => {
     // If no task has been written
     if (formState.task === '') return
 
-    addTask(formState.task)
+    addTask(formState.task.trim(), formState.description)
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container d-flex">
-        <div className="p-2 flex-grow-1">
-          <input
-            type="text"
-            className="form-control"
-            name='task'
-            value={formState.task}
-            onChange={onInputChange}
-            placeholder="Ingresa una tarea" />
+      <div className='d-flex'>
+        <div className='d-flex flex-column mb-3 flex-grow-1'>
+          <div className="p-1 form-floating">
+            <input
+              type="text"
+              className="form-control"
+              name='task'
+              value={formState.task}
+              onChange={onInputChange}
+              id='taskTitle'
+              placeholder="Ingresar una tarea" />
+
+            <label htmlFor="taskTitle">Título</label>
+          </div>
+
+          <div className="form-floating p-1">
+            <textarea
+              className="form-control"
+              placeholder="Descripción de la tarea"
+              id="floatingTextarea"
+              name='description'
+              value={formState.description}
+              onChange={onInputChange}
+            ></textarea>
+
+            <label htmlFor="floatingTextarea">Descripción</label>
+          </div>
         </div>
-        <div className='p-2'>
-          <button type="submit" className="btn add-button">Agregar Tarea</button>
+
+        <div className="d-flex align-items-center">
+          <div className='p-2'>
+            <button type="submit" className="btn add-button">Agregar Tarea</button>
+          </div>
         </div>
       </div>
     </form>
