@@ -4,7 +4,11 @@ Aplicación para manejar una lista de tareas, desarrollada con React y Vite.
 
 ## Para iniciar el proyecto:
 
-Ejecutar el comando *npm run dev*
+Ejecutar los comandos:
+
+- *npm install*
+
+- *npm run dev*
 
 ## Características de la aplicación
 
