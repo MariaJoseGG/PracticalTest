@@ -3,6 +3,7 @@ import '../styles/TaskForm.css'
 
 export const TaskForm = ({ addTask }) => {
 
+  // A custom hook is used to store the values entered in the form of a new task.
   const { formState, onInputChange } = useForm({ task: '' })
 
   // Add new task

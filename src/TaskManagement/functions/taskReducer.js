@@ -24,6 +24,7 @@ export const taskReducer = (state = [], action = {}) => {
       })
 
     case DELETE_TASK:
+      // An array with all tasks is returned, except the one that was deleted
       return state.filter(task => task.id !== action.payload)
 
     default:
